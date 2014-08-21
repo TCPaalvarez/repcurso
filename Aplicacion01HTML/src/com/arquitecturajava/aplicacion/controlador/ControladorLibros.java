@@ -1,4 +1,4 @@
-package com.arquitecturajava.aplicacion; 
+package com.arquitecturajava.aplicacion.controlador; 
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.DataBaseException;
 import com.arquitecturajava.aplicacion.controlador.acciones.Accion;
-import com.arquitecturajava.aplicacion.controlador.acciones.*;
 
 //@WebServlet(name = "controladorlibros", urlPatterns = {"/controladorlibros"})
 public class ControladorLibros extends HttpServlet { 

@@ -2,6 +2,8 @@
 <%@page import="com.arquitecturajava.Libro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <html> 
 <head> 
@@ -9,7 +11,7 @@
 <title>Lista de Libros</title> 
 </head> 
 <body> 
-<form name="filtroCategoria" action="filtrar.do">
+<form name="filtroCategoria" action="FiltrarLibrosPorCategoria.do">
   <select name="categoria" id="categoria"> 
    <option value="seleccionar">seleccionar</option> 
   <c:forEach var="categoria" items="${listaDeCategorias}">
