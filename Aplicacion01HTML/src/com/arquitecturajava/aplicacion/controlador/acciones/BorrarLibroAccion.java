@@ -9,6 +9,6 @@ public class BorrarLibroAccion extends Accion {
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
 		Libro libro = Libro.buscarPorClave(request.getParameter("isbn"));
 		libro.borrar();
-		return "MostrarLibros.jsp"; 
+		return "MostrarLibros.do"; 
 	} 
 } 
