@@ -17,7 +17,8 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
 		if (request.getParameter("categoria") == null || request.getParameter("categoria").equals("seleccionar")) { 
 			listaDeLibros = Libro.buscarTodos(); 
 		} else { 
-			listaDeLibros = Libro.buscarPorCategoria(request.getParameter("categoria")); 
+			Categoria categoria=Categoria.buscarCategoria(request.getParameter("categoria"));
+			listaDeLibros = Libro.buscarPorCategoria(categoria); 
 		} 
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
 	    request.setAttribute("listaDeLibros", listaDeLibros); 

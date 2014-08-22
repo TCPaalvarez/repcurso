@@ -3,17 +3,17 @@ package com.arquitecturajava.aplicacion.bo;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 @Entity 
 @Table(name = "Categoria") 
-public class Categoria { 
+public class CategoriaHibernate { 
 	@Id 
 	private String id; 
 	private String descripcion; 
@@ -25,7 +25,7 @@ public class Categoria {
 	} 
 	@Override 
 	public boolean equals (Object o) { 
-		String categoriaId= ((Categoria)o).getId(); 
+		String categoriaId= ((CategoriaHibernate)o).getId(); 
 		return id.equals(categoriaId); 
 	} 
 	public String getId() { 
@@ -46,24 +46,18 @@ public class Categoria {
 	public void setListaDeLibros(List<Libro> listaDeLibros) { 
 	    this.listaDeLibros = listaDeLibros; 
 	} 
-	
-	public static List<Categoria> buscarTodos() { 
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-		EntityManager manager = factoriaSession.createEntityManager(); 
-		TypedQuery<Categoria> consulta = manager.createQuery( "SELECT c FROM Categoria c", Categoria.class); 
-		List<Categoria> listaDeCategorias = null; 
-		listaDeCategorias = consulta.getResultList(); 
-		manager.close(); 
+	public static List<CategoriaHibernate> buscarTodos() { 
+		SessionFactory factoriaSession =  HibernateHelper.getSessionFactory(); 
+		Session session = factoriaSession.openSession(); 
+		List<CategoriaHibernate> listaDeCategorias = session.createQuery( " from Categoria categoria").list(); 
+		session.close(); 
 		return listaDeCategorias; 
 	} 
-	public static Categoria buscarCategoria(String id) { 
-		EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-		EntityManager manager = factoriaSession.createEntityManager(); 
-		TypedQuery<Categoria> consulta = manager.createQuery("Select c from Categoria c where c.id=?1", Categoria.class); 
-		consulta.setParameter(1, id); 
-		Categoria categoria = null; 
-		categoria = consulta.getSingleResult(); 
-		manager.close(); 
+	public static CategoriaHibernate buscarCategoria(String id) { 
+		SessionFactory factoriaSession =  HibernateHelper.getSessionFactory(); 
+		Session session = factoriaSession.openSession(); 
+		CategoriaHibernate categoria = (CategoriaHibernate) session.get(CategoriaHibernate.class,id);     
+		session.close(); 
 		return categoria; 
 	} 
 } 
