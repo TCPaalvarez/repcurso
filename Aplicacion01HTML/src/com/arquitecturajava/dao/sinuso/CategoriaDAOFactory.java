@@ -1,3 +1,4 @@
+package com.arquitecturajava.dao.sinuso;
 /*
 Sin uso al crear la DAOAbstractFactory
 package com.arquitecturajava.dao;

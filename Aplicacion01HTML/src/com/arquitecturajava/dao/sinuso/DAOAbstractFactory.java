@@ -1,4 +1,5 @@
-package com.arquitecturajava.dao;
+package com.arquitecturajava.dao.sinuso;
+/*package com.arquitecturajava.dao;
 
 public abstract class DAOAbstractFactory  { 
 	  public static DAOFactory getInstance() { 
@@ -7,4 +8,6 @@ public abstract class DAOAbstractFactory  {
 	      return new DAOHibernateFactory(); 
 	    } else { 
 	      return new DAOJPAFactory();}} 
-	} 
+	}
+	
+	 */

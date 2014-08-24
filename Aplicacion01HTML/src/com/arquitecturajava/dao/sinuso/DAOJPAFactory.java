@@ -1,4 +1,5 @@
-package com.arquitecturajava.dao;
+package com.arquitecturajava.dao.sinuso;
+/*package com.arquitecturajava.dao;
 
 import com.arquitecturajava.dao.jpa.CategoriaDAOJPAImpl;
 import com.arquitecturajava.dao.jpa.LibroDAOJPAImpl;
@@ -12,3 +13,4 @@ public class DAOJPAFactory implements DAOFactory {
 	    return new LibroDAOJPAImpl(); 
 	 } 	
 } 
+*/

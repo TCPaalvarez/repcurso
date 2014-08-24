@@ -5,7 +5,6 @@ import java.util.List;
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
 
-
 public interface LibroDAO { 
 	  public abstract void borrar(Libro libro); 
 	  public abstract void salvar(Libro libro); 
