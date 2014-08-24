@@ -11,7 +11,7 @@
 <body> 
 <form id="formularioEdicion" action="SalvarLibro.do"> 
 <fieldset><legend>Formularioaltalibro</legend> 
-<p><label for="isbn">ISBN:</label><input type="text" id="isbn" name="isbn" value="${libro.isbn}" /></p> 
+<p><label for="isbn">ISBN:</label><input type="text" id="isbn" name="isbn" value="${libro.isbn}" /><input type="hidden" id="isbnold" name="isbnold" value="${libro.isbn}" /></p> 
 <p><label for="titulo">Titulo:</label><input type="text" id="titulo" name="titulo" value="${libro.titulo}" /></p> 
 <p><label for="categoria">Categoria :</label><select   name="categoria"> 
   <c:forEach var="categoria" items="${listaDeCategorias}"> 

@@ -7,20 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Libro;
 import com.arquitecturajava.aplicacion.bo.Categoria;
-import com.arquitecturajava.dao.CategoriaDAO;
-import com.arquitecturajava.dao.DAOAbstractFactory;
-import com.arquitecturajava.dao.DAOFactory;
-import com.arquitecturajava.dao.LibroDAO;
+import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
+import com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl;
 
 public class FormularioEditarLibroAccion extends Accion { 
 	@Override 
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
-		DAOFactory factoria=DAOAbstractFactory.getInstance();
-		CategoriaDAO categoriaDAO= factoria.getCategoriaDAO(); 
-		LibroDAO libroDAO=factoria.getLibroDAO();  
-		
-		List<Categoria> listaDeCategorias = categoriaDAO.buscarTodos(); 
-		Libro libro = libroDAO.buscarPorClave(request.getParameter("isbn"));
+	    ServicioLibros servicioLibros= new ServicioLibrosImpl(); 
+		List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros(); 
+		Libro libro = servicioLibros.buscarLibroPorClave(request.getParameter("isbn"));
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
 		request.setAttribute("libro", libro);
     	return "FormularioEditarLibro.jsp"; 

@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class Principal {
+public class PrincipalHibernate {
 
 	public static void main(String[] args) { 
 	  Session session=null; 
@@ -19,10 +19,12 @@ public class Principal {
 		//Ejemplo insert
 	    SessionFactory factoria = new Configuration().configure().buildSessionFactory(); 
 	    session = factoria.openSession(); 
-	    transaccion = session.beginTransaction(); 
-	    List<Categoria> categoria = Categoria.buscarTodos();
-	    Libro lib= new Libro("2","java",categoria.get(0)); 
-	    session.saveOrUpdate(lib); 
+	    transaccion = session.beginTransaction();
+	    //Se comenta por qeu se ha llevado las funciones a las implemetacion de las factorias, pero valdria con volver a meter aqui las funciones
+	    //El problema es qeu las funciones de Hibernate y las de JPA son diferentes, de ahi que se haya cambiado todo
+	    //List<Categoria> categoria = Categoria.buscarTodos();
+	    //Libro lib= new Libro("2","java",categoria.get(0)); 
+	    //session.saveOrUpdate(lib); 
 	    transaccion.commit();     
 	
 		//Ejemplo seleccionar todos, pero hibernate hace una query por cada getcategoria.getdescripcion ademas de  la de los libros

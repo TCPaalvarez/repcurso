@@ -75,7 +75,7 @@ public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements
         throw e; 
       } finally { 
         manager.close(); 
-      } 
+      }
     } 
     public void insertar(T objeto) { 
       EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
