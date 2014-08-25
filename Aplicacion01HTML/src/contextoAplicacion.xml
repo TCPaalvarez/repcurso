@@ -27,16 +27,20 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
   </property> 
 </bean> 
 
+<bean id="plantillaJPA" class="org.springframework.orm.jpa.JpaTemplate"> 
+  <property name="entityManagerFactory" ref="entityManagerFactory" /> 
+</bean> 
+
 <bean id="servicioLibros" class="com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl" >
   	<property name="libroDAO" ref="libroDAO"></property> 
     <property name="categoriaDAO" ref="categoriaDAO"></property> 
 </bean> 
 
 <bean id="libroDAO" class="com.arquitecturajava.dao.jpa.LibroDAOJPAImpl">
-	<property name="entityManagerFactory"  ref="entityManagerFactory"></property> 
+	<property name="entityManagerFactory" ref="entityManagerFactory" /> 
 </bean>
 <bean id="categoriaDAO" class="com.arquitecturajava.dao.jpa.CategoriaDAOJPAImpl" > 
-	<property name="entityManagerFactory"  ref="entityManagerFactory"></property> 
+	<property name="entityManagerFactory" ref="entityManagerFactory" /> 
 </bean>
 
 
