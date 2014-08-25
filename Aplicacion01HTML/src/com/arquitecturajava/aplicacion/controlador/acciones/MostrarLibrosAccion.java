@@ -39,11 +39,10 @@ public class MostrarLibrosAccion extends Accion {
 		//List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros(); 
 		////////////////////////////////////////////////////////////////////
 		
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 		List<Libro> listaDeLibros = servicio.buscarTodosLosLibros(); 
 		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
 		     
-		
 		request.setAttribute("listaDeLibros", listaDeLibros); 
 		request.setAttribute("listaDeCategorias", listaDeCategorias); 
 		return "MostrarLibros.jsp"; 

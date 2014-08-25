@@ -12,7 +12,7 @@ import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
 public class FormularioEditarLibroAccion extends Accion { 
 	@Override 
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
 		Libro libro = servicio.buscarLibroPorClave(request.getParameter("isbn"));
 		request.setAttribute("listaDeCategorias", listaDeCategorias);

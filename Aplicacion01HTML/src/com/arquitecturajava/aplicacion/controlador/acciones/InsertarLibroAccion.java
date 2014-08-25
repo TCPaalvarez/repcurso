@@ -12,7 +12,7 @@ public class InsertarLibroAccion extends Accion{
 	  public String ejecutar(HttpServletRequest request,  HttpServletResponse response) throws DataBaseException { 
 	    String isbn = request.getParameter("isbn"); 
 	    String titulo = request.getParameter("titulo"); 
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 	    Categoria categoria = servicio.buscarCategoriaPorClave(request.getParameter("categoria"));
 	    Libro libro = new Libro(isbn, titulo, categoria); 
 	    servicio.salvarLibro(libro); 

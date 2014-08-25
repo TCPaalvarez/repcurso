@@ -8,21 +8,30 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+
 import java.lang.reflect.ParameterizedType;
 
 import com.arquitecturajava.dao.GenericDAO;
 
-public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements 
-    GenericDAO<T, Id> { 
-  private Class<T> claseDePersistencia; 
-  @SuppressWarnings("unchecked") 
-  public GenericDAOJPAImpl() { 
-	  this.claseDePersistencia=(Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-  } 
+public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements GenericDAO<T, Id> { 
+	private Class<T> claseDePersistencia; 
+	private EntityManagerFactory entityManagerFactory=null; 
+
+	@SuppressWarnings("unchecked") 
+	public GenericDAOJPAImpl() { 
+		this.claseDePersistencia=(Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	} 
+
+  	public EntityManagerFactory getEntityManagerFactory() { 
+  		return entityManagerFactory; 
+	} 
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) { 
+		this.entityManagerFactory = entityManagerFactory; 
+	} 
+  
   @Override 
   public T buscarPorClave(Id id) { 
-    EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-    EntityManager manager = factoriaSession.createEntityManager(); 
+  	EntityManager manager =  getEntityManagerFactory().createEntityManager(); 
     T objeto = null; 
     try { 
       objeto = (T) manager.find(claseDePersistencia, id); 
@@ -33,8 +42,7 @@ public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements
   } 
   @Override 
   public List<T> buscarTodos() { 
-    EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-    EntityManager manager = factoriaSession.createEntityManager(); 
+  	EntityManager manager =  getEntityManagerFactory().createEntityManager(); 
     List<T> listaDeObjetos = null; 
     try { 
     	TypedQuery<T> consulta = manager.createQuery("select o from " + claseDePersistencia.getSimpleName()+ " o", claseDePersistencia); 
@@ -46,8 +54,7 @@ public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements
   } 
 
   public void borrar(T objeto) { 
-    EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-    EntityManager manager = factoriaSession.createEntityManager(); 
+  	EntityManager manager =  getEntityManagerFactory().createEntityManager(); 
     EntityTransaction tx = null; 
     try { 
       tx = manager.getTransaction(); 
@@ -62,35 +69,33 @@ public abstract class GenericDAOJPAImpl<T, Id extends Serializable> implements
       } 
     } 
     public void salvar(T objeto) { 
-      EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-      EntityManager manager = factoriaSession.createEntityManager(); 
-      EntityTransaction tx = null; 
-      try { 
-        tx = manager.getTransaction(); 
-        tx.begin(); 
-        manager.merge(objeto); 
-        tx.commit(); 
-      } catch (PersistenceException e) { 
-        tx.rollback(); 
-        throw e; 
-      } finally { 
-        manager.close(); 
-      }
+    	EntityManager manager =  getEntityManagerFactory().createEntityManager(); 
+		EntityTransaction tx = null; 
+		try { 
+			tx = manager.getTransaction(); 
+		    tx.begin(); 
+		    manager.merge(objeto); 
+		    tx.commit(); 
+		} catch (PersistenceException e) { 
+		    tx.rollback(); 
+		    throw e; 
+		} finally { 
+		    manager.close(); 
+		}
     } 
     public void insertar(T objeto) { 
-      EntityManagerFactory factoriaSession = JPAHelper.getJPAFactory(); 
-      EntityManager manager = factoriaSession.createEntityManager(); 
-      EntityTransaction tx = null; 
-      try { 
-        tx = manager.getTransaction(); 
-        tx.begin(); 
-        manager.persist(objeto); 
-        tx.commit(); 
-      } catch (PersistenceException e) { 
-        tx.rollback(); 
-        throw e; 
-      } finally { 
-        manager.close(); 
-      } 
+    	EntityManager manager =  getEntityManagerFactory().createEntityManager(); 
+	    EntityTransaction tx = null; 
+	    try { 
+	        tx = manager.getTransaction(); 
+	        tx.begin(); 
+	        manager.persist(objeto); 
+	        tx.commit(); 
+	    } catch (PersistenceException e) { 
+	        tx.rollback(); 
+	        throw e; 
+	    } finally { 
+	        manager.close(); 
+	    } 
     } 
 } 

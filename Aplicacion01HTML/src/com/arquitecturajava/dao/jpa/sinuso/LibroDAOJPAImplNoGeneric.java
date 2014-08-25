@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
 import com.arquitecturajava.dao.LibroDAO;
-import com.arquitecturajava.dao.jpa.JPAHelper;
+import com.arquitecturajava.dao.jpa.sinuso.JPAHelper;
 
 public class LibroDAOJPAImplNoGeneric implements LibroDAO { 
 	

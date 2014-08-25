@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.dao.CategoriaDAO;
-import com.arquitecturajava.dao.jpa.JPAHelper;
+import com.arquitecturajava.dao.jpa.sinuso.JPAHelper;
 
 public class CategoriaDAOJPAImplNoGeneric  implements CategoriaDAO {
 

@@ -14,7 +14,7 @@ public class SalvarLibroAccion extends Accion {
 	    String isbnold = request.getParameter("isbnold"); 
 	    String titulo = request.getParameter("titulo"); 
 	    
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 	    Libro lib=servicio.buscarLibroPorClave(isbnold);
 	    Categoria categoria = servicio.buscarCategoriaPorClave(request.getParameter("categoria"));
 	    lib.setCategoria(categoria);

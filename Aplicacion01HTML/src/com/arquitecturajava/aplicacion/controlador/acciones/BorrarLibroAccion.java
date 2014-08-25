@@ -9,7 +9,7 @@ import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
 public class BorrarLibroAccion extends Accion { 
 	@Override 
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 		Libro libro = servicio.buscarLibroPorClave(request.getParameter("isbn"));
 		servicio.borrarLibro(libro);
 		return "MostrarLibros.do"; 

@@ -13,7 +13,7 @@ import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
 public class FiltrarLibrosPorCategoriaAccion extends Accion { 
 	@Override 
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
 		List<Libro> listaDeLibros = null; 
 		if (request.getParameter("categoria") == null || request.getParameter("categoria").equals("seleccionar")) {

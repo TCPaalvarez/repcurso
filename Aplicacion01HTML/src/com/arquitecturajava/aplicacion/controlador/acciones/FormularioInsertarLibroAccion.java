@@ -11,7 +11,7 @@ import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
 public class FormularioInsertarLibroAccion extends Accion { 
 	@Override
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) { 
-		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros", request); 
 		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
     	request.setAttribute("listaDeCategorias", listaDeCategorias); 
     	return "FormularioInsertarLibro.jsp"; 

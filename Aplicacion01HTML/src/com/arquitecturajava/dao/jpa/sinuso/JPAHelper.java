@@ -1,4 +1,4 @@
-package com.arquitecturajava.dao.jpa;
+package com.arquitecturajava.dao.jpa.sinuso;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
