@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
-import com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl;
 
 public class FormularioInsertarLibroAccion extends Accion { 
 	@Override
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) { 
-	    ServicioLibros servicioLibros= new ServicioLibrosImpl(); 
-		List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros(); 
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
     	request.setAttribute("listaDeCategorias", listaDeCategorias); 
     	return "FormularioInsertarLibro.jsp"; 
 	} 

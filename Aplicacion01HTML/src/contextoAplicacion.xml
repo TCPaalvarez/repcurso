@@ -9,4 +9,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 -->
 <bean id="libroDAO" class="com.arquitecturajava.dao.jpa.LibroDAOJPAImpl" /> 
 <bean id="categoriaDAO" class="com.arquitecturajava.dao.jpa.CategoriaDAOJPAImpl" /> 
+
+<bean id="servicioLibros" class="com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl" />
 </beans> 

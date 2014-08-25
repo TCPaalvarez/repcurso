@@ -33,10 +33,16 @@ public class MostrarLibrosAccion extends Accion {
 		//List<Categoria> listaDeCategorias = categoriaDAO.buscarTodos();
 		////////////////////////////////////////////////////////////////////
 		
-		//Con principio DRY y factorias, y  servicios
-		ServicioLibros servicioLibros= new ServicioLibrosImpl(); 
-		List<Libro> listaDeLibros = servicioLibros.buscarTodosLosLibros(); 
-		List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros(); 
+		//Con principio DRY y factorias spring, y  servicios no spring
+		//ServicioLibros servicioLibros= new ServicioLibrosImpl(); 
+		//List<Libro> listaDeLibros = servicioLibros.buscarTodosLosLibros(); 
+		//List<Categoria> listaDeCategorias = servicioLibros.buscarCategoriasLibros(); 
+		////////////////////////////////////////////////////////////////////
+		
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		List<Libro> listaDeLibros = servicio.buscarTodosLosLibros(); 
+		List<Categoria> listaDeCategorias = servicio.buscarCategoriasLibros(); 
+		     
 		
 		request.setAttribute("listaDeLibros", listaDeLibros); 
 		request.setAttribute("listaDeCategorias", listaDeCategorias); 

@@ -5,14 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arquitecturajava.aplicacion.bo.Libro;
 import com.arquitecturajava.aplicacion.servicios.ServicioLibros;
-import com.arquitecturajava.aplicacion.servicios.impl.ServicioLibrosImpl;
 
 public class BorrarLibroAccion extends Accion { 
 	@Override 
   	public String ejecutar(HttpServletRequest request,   HttpServletResponse response) {
-	    ServicioLibros servicioLibros= new ServicioLibrosImpl(); 
-		Libro libro = servicioLibros.buscarLibroPorClave(request.getParameter("isbn"));
-		servicioLibros.borrarLibro(libro);
+		ServicioLibros servicio = (ServicioLibros) getBean("servicioLibros"); 
+		Libro libro = servicio.buscarLibroPorClave(request.getParameter("isbn"));
+		servicio.borrarLibro(libro);
 		return "MostrarLibros.do"; 
 	} 
 } 
