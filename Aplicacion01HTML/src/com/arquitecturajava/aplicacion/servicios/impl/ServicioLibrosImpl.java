@@ -3,6 +3,7 @@ package com.arquitecturajava.aplicacion.servicios.impl;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.arquitecturajava.aplicacion.bo.Categoria;
 import com.arquitecturajava.aplicacion.bo.Libro;
@@ -46,26 +47,31 @@ public class ServicioLibrosImpl implements ServicioLibros {
 		//libroDAO= (LibroDAO)factoria.getBean("libroDAO"); 
 		//categoriaDAO=(CategoriaDAO)factoria.getBean("categoriaDAO"); 
 	} 
-	 
+	@Transactional 
 	public void salvarLibro(Libro libro) { 
 		libroDAO.salvar(libro); 
 	} 
+	@Transactional 
 	public void borrarLibro(Libro libro) { 
 		libroDAO.borrar(libro); 
 	} 
+	@Transactional 
 	public List<Libro> buscarTodosLosLibros() { 
 		return libroDAO.buscarTodos(); 
 	} 
+	@Transactional 
 	public List<Categoria> buscarCategoriasLibros() { 
 		return categoriaDAO.buscarTodos(); 
 	} 
-	 
+	@Transactional 
 	public Libro buscarLibroPorClave(String isbn) { 
 		return libroDAO.buscarPorClave(isbn); 
 	} 
+	@Transactional 
 	public Categoria buscarCategoriaPorClave(String id) { 
 		return categoriaDAO.buscarPorClave(id); 
 	} 
+	@Transactional 
 	public List<Libro> buscarLibrosPorCategoria(String id) { 
 		Categoria categoria= categoriaDAO.buscarPorClave(id); 
 		return libroDAO.buscarPorCategoria(categoria); 
